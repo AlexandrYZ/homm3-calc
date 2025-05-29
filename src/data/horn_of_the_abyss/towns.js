@@ -8,6 +8,7 @@ import STRONGHOLD_UNITS from './units/stronghold';
 import FORTRESS_UNITS from './units/fortress';
 import CONFLUX_UNITS from './units/conflux';
 import COVE_UNITS from './units/cove';
+import FACTORY_UNITS from './units/factory'; // Added import
 import NEUTRAL_UNITS from './units/neutral';
 
 export default {
@@ -60,6 +61,11 @@ export default {
 		img: 'cove.gif',
 		slug: 'cove',
 		units: COVE_UNITS,
+	},
+	FACTORY: { // Added Factory entry
+		img: 'factory.gif',
+		slug: 'factory',
+		units: FACTORY_UNITS,
 	},
 	NEUTRAL: {
 		img: 'neutral.gif',
