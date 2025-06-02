@@ -23,12 +23,14 @@ As for the fellow developers, pull requests are more than welcome. For major cha
 Feel free to reach out if you have any questions.
 
 ## How to run the app locally
-Before you get started, please install <a href="https://nodejs.org/en/download/" target="_blank">NodeJS</a>. Once you have that handled, open up your terminal and cd to the root of the project and run he following scripts: 
-```python
-npm run install
-npm run start
+Перед началом работы установите <a href="https://nodejs.org/en/download/" target="_blank">NodeJS</a> версии 16 или выше. В проекте используется пакет sass вместо устаревшего node-sass.
 
-# App is now running on localhost:8080
+После этого откройте терминал, перейдите в корень проекта и выполните команды:
+```bash
+npm install
+npm start
+
+# Приложение будет доступно на http://localhost:8080
 ```
 
 ## License
