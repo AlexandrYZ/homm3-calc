@@ -37,7 +37,7 @@ export default {
 		health: 14,
 		speed: 6,
 		growth: 8,
-		aiValue: 186,
+		aiValue: 201,
 		cost: 140,
 		// Breath attack, Repairing (10 HP per Mechanic)
 	},
@@ -51,7 +51,7 @@ export default {
 		health: 16,
 		speed: 7,
 		growth: 8,
-		aiValue: 278,
+		aiValue: 298,
 		cost: 170,
 		// Breath attack, Repairing (20 HP per Engineer)
 	},
@@ -71,7 +71,7 @@ export default {
 	BELLWETHER_ARMADILLO: {
 		name: 'Bellwether Armadillo',
 		level: 3, // Upgraded
-		attack: 5,
+		attack: 6,
 		defense: 11,
 		minDamage: 3,
 		maxDamage: 5,
