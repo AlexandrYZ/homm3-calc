@@ -10,6 +10,8 @@ const isDev = process.env.NODE_ENV === 'development';
  */
 
 module.exports = {
+	stats: 'errors-only',
+	infrastructureLogging: { level: 'error' },
 	entry: './src/app.js',
 	output: {
 		filename: 'bundle.js',
@@ -20,7 +22,14 @@ module.exports = {
 		watch: true,
 		devServer: {
 			static: './dist', // теперь сервер раздаёт dist
-			hot: true
+			hot: true,
+			client: {
+				logging: 'error',
+				overlay: {
+					warnings: false,
+					errors: true
+				}
+			}
 		}
 	} : {}),
 	module: {
@@ -28,10 +37,15 @@ module.exports = {
 			{
 				test: /\.s[ac]ss$/i,
 				use: [
-					'style-loader',
-					'css-loader',
-					'sass-loader'
-				]
+            'style-loader',
+            'css-loader',
+            {
+              loader: 'sass-loader',
+              options: {
+                implementation: require('sass'),
+              },
+            },
+          ]
 			}
 		]
 	},
