@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "intro.js": "^2.9.3",
@@ -23,13 +24,14 @@
     "style-loader": "^3.3.4",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-server": "^4.15.1",
+    "jest": "^29.5.0"
   },
   "scripts": {
     "start": "webpack-dev-server --open",
     "dev": "webpack --config webpack.config.js",
     "build": "webpack --mode production --config webpack.config.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --experimental-vm-modules"
   },
   "author": "",
   "license": "ISC"
