@@ -8,6 +8,8 @@ import unitService from '../services/unitService';
 import spellService from '../services/spellService';
 import damageService from '../services/damageService';
 import analyticsService from '../services/analyticsService';
+import historyService from '../services/historyService';
+import HistoryView from './history';
 
 export default class DamageCalculator {
 	init(containerEl) {
@@ -108,11 +110,12 @@ export default class DamageCalculator {
 		this.render();
 	}
 
-	render() {
-		this.containerEl.innerHTML = this.createUnitsHtml();
-		this.renderResults();
-		this.bindListeners();
-	}
+        render() {
+                this.containerEl.innerHTML = this.createUnitsHtml();
+                this.renderResults();
+                this.renderHistory();
+                this.bindListeners();
+        }
 
 	selectUnit(unitInfo, version) {
 		const analyticsCategory = `${unitInfo.position} unit`;
@@ -271,9 +274,10 @@ export default class DamageCalculator {
         </div>
 
         <div id="results"></div>
+        <div id="history"></div>
       </div>
     `;
-	}
+        }
 
 	/* eslint-disable-next-line class-methods-use-this */
 	createSpellsHtml(position, unitSpells) {
@@ -431,15 +435,27 @@ export default class DamageCalculator {
 		tippy('.spell');
 	}
 
-	renderResults() {
-		const detailedDamageInfo = damageService.detailedTotalDamageCalculation(
-			this.attackerHero,
-			this.defenderHero,
-			this.attackerUnit,
-			this.defenderUnit
-		);
+        renderResults() {
+                const detailedDamageInfo = damageService.detailedTotalDamageCalculation(
+                        this.attackerHero,
+                        this.defenderHero,
+                        this.attackerUnit,
+                        this.defenderUnit
+                );
 
-		this.resultsView = new ResultsView('results');
-		this.resultsView.render(detailedDamageInfo);
-	}
+                this.resultsView = new ResultsView('results');
+                this.resultsView.render(detailedDamageInfo);
+
+                historyService.addEntry({
+                        attackerUnit: this.attackerUnit.name,
+                        defenderUnit: this.defenderUnit.name,
+                        detailedDamageInfo,
+                });
+        }
+
+        renderHistory() {
+                this.historyView = new HistoryView('history');
+                const history = historyService.getHistory();
+                this.historyView.render(history);
+        }
 }
