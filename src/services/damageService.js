@@ -10,10 +10,11 @@ export default {
 };
 
 function detailedTotalDamageCalculation(
-	attackingHero,
-	defendingHero,
-	attackingUnit,
-	defendingUnit
+        attackingHero,
+        defendingHero,
+        attackingUnit,
+        defendingUnit,
+        includeCounter = true
 ) {
 	const attackerSpecialtyAttackBonus = calculateSpecialtyAttackBonus(
 		attackingHero,
@@ -120,21 +121,52 @@ function detailedTotalDamageCalculation(
 			(1 - airShieldSpellReduction);
 	}
 
-	const kills = calculateKills(
-		minTotalDamage,
-		maxTotalDamage,
-		defendingUnit.health
-	);
-	const rangedKills = calculateKills(
-		minTotalRangedDamage,
-		maxTotalRangedDamage,
-		defendingUnit.health
-	);
+        const kills = calculateKills(
+                minTotalDamage,
+                maxTotalDamage,
+                defendingUnit.health
+        );
+        const rangedKills = calculateKills(
+                minTotalRangedDamage,
+                maxTotalRangedDamage,
+                defendingUnit.health
+        );
 
-	return {
-		attackerCount: attackingUnit.count,
-		defenderCount: defendingUnit.count,
-		minTotalDamage,
+        let counterDamage = null;
+
+        if (includeCounter) {
+                const minSurvivors = Math.max(defendingUnit.count - kills.max, 0);
+                const maxSurvivors = Math.max(defendingUnit.count - kills.min, 0);
+
+                const minCounterResult = detailedTotalDamageCalculation(
+                        defendingHero,
+                        attackingHero,
+                        { ...defendingUnit, count: minSurvivors },
+                        attackingUnit,
+                        false
+                );
+                const maxCounterResult = detailedTotalDamageCalculation(
+                        defendingHero,
+                        attackingHero,
+                        { ...defendingUnit, count: maxSurvivors },
+                        attackingUnit,
+                        false
+                );
+
+                counterDamage = {
+                        minTotalDamage: minCounterResult.minTotalDamage,
+                        maxTotalDamage: maxCounterResult.maxTotalDamage,
+                        kills: {
+                                min: minCounterResult.kills.min,
+                                max: maxCounterResult.kills.max,
+                        },
+                };
+        }
+
+        return {
+                attackerCount: attackingUnit.count,
+                defenderCount: defendingUnit.count,
+                minTotalDamage,
 		maxTotalDamage,
 		minTotalRangedDamage,
 		maxTotalRangedDamage,
@@ -151,10 +183,11 @@ function detailedTotalDamageCalculation(
 		archerySpecialtyBonus: attackingHero.archerySpecialtyBonus,
 		defenseSkillReduction,
 		armorerReduction,
-		armorerSpecialityBonus,
-		meleePenaltyReduction,
-		slayerAttackBonus,
-	};
+                armorerSpecialityBonus,
+                meleePenaltyReduction,
+                slayerAttackBonus,
+                counterDamage,
+        };
 }
 
 /* eslint-disable-next-line consistent-return */
