@@ -1,13 +1,13 @@
 import tippy from 'tippy.js';
 
-import Hero from '../models/Hero';
-import HeroView from './hero';
-import ResultsView from './results';
+import Hero from '../models/Hero.js';
+import HeroView from './hero.js';
+import ResultsView from './results.js';
 
-import unitService from '../services/unitService';
-import spellService from '../services/spellService';
-import damageService from '../services/damageService';
-import analyticsService from '../services/analyticsService';
+import unitService from '../services/unitService.js';
+import spellService from '../services/spellService.js';
+import damageService from '../services/damageService.js';
+import analyticsService from '../services/analyticsService.js';
 
 export default class DamageCalculator {
 	init(containerEl) {

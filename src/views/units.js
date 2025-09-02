@@ -1,6 +1,6 @@
 import tippy from 'tippy.js';
 
-import unitService from '../services/unitService';
+import unitService from '../services/unitService.js';
 
 export default class UnitsView {
 	showUnits(town) {

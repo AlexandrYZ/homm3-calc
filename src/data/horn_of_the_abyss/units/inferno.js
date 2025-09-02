@@ -65,6 +65,7 @@ export default {
 		growth: 5,
 		aiValue: 357,
 		cost: 200,
+		specials: ['no_enemy_retaliation'],
 	},
 	CERBERUS: {
 		name: 'Cerberus',
@@ -78,6 +79,7 @@ export default {
 		growth: 5,
 		aiValue: 392,
 		cost: 250,
+		specials: ['no_enemy_retaliation'],
 	},
 	DEMON: {
 		name: 'Demon',

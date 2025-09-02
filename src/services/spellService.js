@@ -1,4 +1,4 @@
-import SPELLS from '../data/spells';
+import SPELLS from '../data/spells.js';
 
 class SpellService {
 	constructor() {

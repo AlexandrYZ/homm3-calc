@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
-import specialityService from './specialityService';
-import unitService from './unitService';
+import specialityService from './specialityService.js';
+import unitService from './unitService.js';
 
 export default {
 	detailedTotalDamageCalculation,
@@ -131,6 +131,60 @@ function detailedTotalDamageCalculation(
 		defendingUnit.health
 	);
 
+	// Counter-attack calculation (melee), accounting for defender losses
+	const attackerHasNoEnemyRetaliation =
+		(attackingUnit.specials || []).includes('no_enemy_retaliation');
+
+	let counterMinTotalDamage = 0;
+	let counterMaxTotalDamage = 0;
+	let counterKills = { min: 0, max: 0 };
+
+	if (!attackerHasNoEnemyRetaliation) {
+		const defenderRemainingIfMaxKills = Math.max(
+			0,
+			defendingUnit.count - kills.max
+		);
+		const defenderRemainingIfMinKills = Math.max(
+			0,
+			defendingUnit.count - kills.min
+		);
+
+		if (defenderRemainingIfMaxKills > 0 || defenderRemainingIfMinKills > 0) {
+			// Clone units preserving getters/prototype, adjust counts
+			const defenderUnitForMinRetaliation = cloneUnitWithCount(
+				defendingUnit,
+				defenderRemainingIfMaxKills
+			);
+			const defenderUnitForMaxRetaliation = cloneUnitWithCount(
+				defendingUnit,
+				defenderRemainingIfMinKills
+			);
+
+			// Compute min retaliation damage (using fewer remaining defenders)
+			const minRet = computeMeleeDamageOnly(
+				defendingHero,
+				attackingHero,
+				defenderUnitForMinRetaliation,
+				attackingUnit
+			);
+			// Compute max retaliation damage (using more remaining defenders)
+			const maxRet = computeMeleeDamageOnly(
+				defendingHero,
+				attackingHero,
+				defenderUnitForMaxRetaliation,
+				attackingUnit
+			);
+
+			counterMinTotalDamage = minRet.minTotalDamage;
+			counterMaxTotalDamage = maxRet.maxTotalDamage;
+			counterKills = calculateKills(
+				counterMinTotalDamage,
+				counterMaxTotalDamage,
+				attackingUnit.health
+			);
+		}
+	}
+
 	return {
 		attackerCount: attackingUnit.count,
 		defenderCount: defendingUnit.count,
@@ -140,6 +194,9 @@ function detailedTotalDamageCalculation(
 		maxTotalRangedDamage,
 		kills,
 		rangedKills,
+		counterMinTotalDamage,
+		counterMaxTotalDamage,
+		counterKills,
 		attackerSpecialtyAttackBonus,
 		attackerSpecialtyDefenseBonus,
 		defenderSpecialtyAttackBonus,
@@ -299,4 +356,74 @@ function calculateSlayerAttackSkillBonus(attackingUnit, defendingUnit) {
 	const isAffected = affectedUnitNames.includes(defendingUnit.name);
 
 	return isAffected ? 8 : 0;
+}
+
+// Compute melee-only damage from attacker->defender using the same rules as above,
+// but without ranged pathways. Returns an object with minTotalDamage and maxTotalDamage.
+function computeMeleeDamageOnly(attHero, defHero, attUnit, defUnit) {
+	const attackerSpecialtyAttackBonus = calculateSpecialtyAttackBonus(
+		attHero,
+		attUnit
+	);
+	const defenderSpecialtyDefenseBonus = calculateSpecialtyDefenseBonus(
+		defHero,
+		defUnit
+	);
+
+	const slayerAttackBonus = calculateSlayerAttackSkillBonus(attUnit, defUnit);
+
+	const totalAttack =
+		attHero.attack + attUnit.totalAttackSkill + slayerAttackBonus + attackerSpecialtyAttackBonus;
+	const totalDefense =
+		defHero.defense + defUnit.totalDefenseSkill + defenderSpecialtyDefenseBonus;
+
+	let { minBaseDamage, maxBaseDamage } = attUnit;
+	minBaseDamage *= calculateBlessSpecialityBonus(attHero, attUnit);
+	maxBaseDamage *= calculateBlessSpecialityBonus(attHero, attUnit);
+
+	const attackSkillBonus = calculateAttackSkillBonus(totalAttack, totalDefense);
+	const defenseSkillReduction = calculateDefenseSkillReduction(
+		totalAttack,
+		totalDefense
+	);
+
+	const offenseBonus = attHero.offenseBonus;
+	const offenseSpecialityBonus = attHero.offenseSpecialityBonus;
+	const armorerReduction = defHero.armorerBonus;
+	const { armorerSpecialityBonus } = defHero;
+	const shieldSpellReduction = calculateShieldSpellReduction(
+		defUnit.spells.shield ? defHero.skills.earth_magic || 1 : 0
+	);
+	const meleePenaltyReduction = attUnit.meleePenalty;
+
+	const minTotalDamage =
+		attUnit.count *
+		minBaseDamage *
+		(1 + attackSkillBonus + offenseBonus + offenseSpecialityBonus) *
+		(1 - defenseSkillReduction) *
+		(1 - armorerReduction) *
+		(1 - armorerSpecialityBonus) *
+		(1 - shieldSpellReduction) *
+		(1 - meleePenaltyReduction);
+
+	const maxTotalDamage =
+		attUnit.count *
+		maxBaseDamage *
+		(1 + attackSkillBonus + offenseBonus + offenseSpecialityBonus) *
+		(1 - defenseSkillReduction) *
+		(1 - armorerReduction) *
+		(1 - armorerSpecialityBonus) *
+		(1 - shieldSpellReduction) *
+		(1 - meleePenaltyReduction);
+
+	return { minTotalDamage, maxTotalDamage };
+}
+
+function cloneUnitWithCount(unit, newCount) {
+	const clone = Object.assign(
+		Object.create(Object.getPrototypeOf(unit)),
+		unit
+	);
+	clone.count = newCount;
+	return clone;
 }

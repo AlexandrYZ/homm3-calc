@@ -24,6 +24,7 @@ export default {
 		growth: 20,
 		aiValue: 95,
 		cost: 30,
+		specials: ['no_enemy_retaliation'],
 	},
 	AIR_ELEMENTAL: {
 		name: 'Air Elemental',

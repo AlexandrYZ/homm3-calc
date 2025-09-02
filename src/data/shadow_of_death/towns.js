@@ -1,13 +1,13 @@
-import CASTLE_UNITS from './units/castle';
-import INFERNO_UNITS from './units/inferno';
-import RAMPART_UNITS from './units/rampart';
-import TOWER_UNITS from './units/tower';
-import NECROPOLIS_UNITS from './units/necropolis';
-import DUNGEON_UNITS from './units/dungeon';
-import STRONGHOLD_UNITS from './units/stronghold';
-import FORTRESS_UNITS from './units/fortress';
-import CONFLUX_UNITS from './units/conflux';
-import NEUTRAL_UNITS from './units/neutral';
+import CASTLE_UNITS from './units/castle.js';
+import INFERNO_UNITS from './units/inferno.js';
+import RAMPART_UNITS from './units/rampart.js';
+import TOWER_UNITS from './units/tower.js';
+import NECROPOLIS_UNITS from './units/necropolis.js';
+import DUNGEON_UNITS from './units/dungeon.js';
+import STRONGHOLD_UNITS from './units/stronghold.js';
+import FORTRESS_UNITS from './units/fortress.js';
+import CONFLUX_UNITS from './units/conflux.js';
+import NEUTRAL_UNITS from './units/neutral.js';
 
 export default {
 	CASTLE: {

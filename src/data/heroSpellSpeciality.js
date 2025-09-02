@@ -1,4 +1,4 @@
-import SpellSpecialty from '../models/SpellSpecialty';
+import SpellSpecialty from '../models/SpellSpecialty.js';
 
 export default {
 	BLESS: new SpellSpecialty(

@@ -1,8 +1,8 @@
 import tippy from 'tippy.js';
 
-import unitSpecialityService from '../services/unitSpecialityService';
-import spellSpecialityService from '../services/spellSpecialityService';
-import skillSpecialtyService from '../services/skillSpecialityService';
+import unitSpecialityService from '../services/unitSpecialityService.js';
+import spellSpecialityService from '../services/spellSpecialityService.js';
+import skillSpecialtyService from '../services/skillSpecialityService.js';
 
 export default class SpecialtysView {
 	constructor(drawerData) {

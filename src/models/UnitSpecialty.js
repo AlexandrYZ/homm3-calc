@@ -1,4 +1,4 @@
-import Specialty from './Specialty';
+import Specialty from './Specialty.js';
 
 export default class UnitSpecialty extends Specialty {
 	constructor(slug, name, image, scalingType, description, affectedUnits) {

@@ -12,6 +12,13 @@ const isDev = process.env.NODE_ENV === 'development';
 module.exports = {
 	stats: 'errors-only',
 	infrastructureLogging: { level: 'error' },
+	resolve: {
+		extensions: ['.js'],
+		fullySpecified: false,
+		byDependency: {
+			esm: { fullySpecified: false },
+		},
+	},
 	entry: './src/app.js',
 	output: {
 		filename: 'bundle.js',
@@ -34,6 +41,10 @@ module.exports = {
 	} : {}),
 	module: {
 		rules: [
+			{
+				test: /\.js$/,
+				type: 'javascript/auto',
+			},
 			{
 				test: /\.s[ac]ss$/i,
 				use: [

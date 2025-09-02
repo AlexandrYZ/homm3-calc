@@ -108,6 +108,7 @@ export default {
 		aiValue: 947,
 		cost: 450,
 		// Mechanical, Detonation, No enemy retaliation
+		specials: ['no_enemy_retaliation'],
 	},
 	SANDWORM: {
 		name: 'Sandworm',

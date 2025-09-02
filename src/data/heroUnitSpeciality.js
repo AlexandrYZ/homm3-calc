@@ -1,5 +1,5 @@
-import FlatScalingUnitSpecialty from '../models/FlatScalingUnitSpecialty';
-import LevelScalingUnitSpecialty from '../models/LevelScalingUnitSpecialty';
+import FlatScalingUnitSpecialty from '../models/FlatScalingUnitSpecialty.js';
+import LevelScalingUnitSpecialty from '../models/LevelScalingUnitSpecialty.js';
 
 /*
   LevelScalingUnitSpecialty: { slug, name, image, scalingLevelStarts }

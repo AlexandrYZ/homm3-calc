@@ -146,6 +146,7 @@ export default {
 		growth: 2,
 		aiValue: 2016,
 		cost: 1100,
+		specials: ['no_enemy_retaliation'],
 	},
 	NAGA_QUEEN: {
 		name: 'Naga Queen',
@@ -159,6 +160,7 @@ export default {
 		growth: 2,
 		aiValue: 2840,
 		cost: 1600,
+		specials: ['no_enemy_retaliation'],
 	},
 	GIANT: {
 		name: 'Giant',

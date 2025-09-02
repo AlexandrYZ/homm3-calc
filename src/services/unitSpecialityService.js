@@ -1,4 +1,4 @@
-import SPECIALITYS from '../data/heroUnitSpeciality';
+import SPECIALITYS from '../data/heroUnitSpeciality.js';
 
 class UnitSpecialityService {
 	constructor() {
