@@ -429,4 +429,53 @@ export default {
 		'Increases the Attack and Defense skills of any Wyverns or Wyvern Monarchs for each level attained after 6th level.',
 		['wyvern', 'wyvern_monarch']
 	),
+	// Bulwark faction units
+	KOBOLDS: new LevelScalingUnitSpecialty(
+		'kobolds',
+		'Kobolds',
+		'Kobold.gif',
+		1,
+		'Increases the Speed of any Kobold or Kobold Foremen by 1 and their Attack and Defense skills by 10% for every level (rounded up).',
+		['kobold', 'kobold_foreman']
+	),
+	MOUNTAIN_RAMS: new LevelScalingUnitSpecialty(
+		'mountain_rams',
+		'Mountain Rams',
+		'Mountain_Ram.gif',
+		2,
+		'Increases Speed of any Mountain Rams or Argali by 1 and their Attack and Defense skills by 20% for every 2 levels (rounded up).',
+		['mountain_ram', 'argali']
+	),
+	SNOW_ELVES: new LevelScalingUnitSpecialty(
+		'snow_elves',
+		'Snow Elves',
+		'Snow_Elf.gif',
+		3,
+		'Increases Speed of any Snow Elves or Steel Elves by 1 and their Attack and Defense skills by 20% for every 3 levels (rounded up).',
+		['snow_elf', 'steel_elf']
+	),
+	YETIS: new LevelScalingUnitSpecialty(
+		'yetis',
+		'Yetis',
+		'Yeti.gif',
+		4,
+		'Increases the Speed of any Yeti or Yeti Runemasters by 1 and their Attack and Defense skills by 20% for every 4 levels (rounded up).',
+		['yeti', 'yeti_runemaster']
+	),
+	SHAMANS: new LevelScalingUnitSpecialty(
+		'shamans',
+		'Shamans',
+		'Shaman.gif',
+		5,
+		'Increases Speed of any Shamans or Great Shamans by 1 and their Attack and Defense skills by 20% for every 5 levels (rounded up).',
+		['shaman', 'great_shaman']
+	),
+	MAMMOTHS: new LevelScalingUnitSpecialty(
+		'mammoths',
+		'Mammoths',
+		'Mammoth.gif',
+		6,
+		'Increases the Speed of any Mammoths or War Mammoths by 1 and their Attack and Defense skills by 20% for every 6 levels (rounded up).',
+		['mammoth', 'war_mammoth']
+	),
 };

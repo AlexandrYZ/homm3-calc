@@ -9,6 +9,7 @@ import FORTRESS_UNITS from './units/fortress.js';
 import CONFLUX_UNITS from './units/conflux.js';
 import COVE_UNITS from './units/cove.js';
 import FACTORY_UNITS from './units/factory.js'; // Added import
+import BULWARK_UNITS from './units/bulwark.js';
 import NEUTRAL_UNITS from './units/neutral.js';
 
 export default {
@@ -66,6 +67,11 @@ export default {
 		img: 'factory.gif',
 		slug: 'factory',
 		units: FACTORY_UNITS,
+	},
+	BULWARK: {
+		img: 'bulwark.gif',
+		slug: 'bulwark',
+		units: BULWARK_UNITS,
 	},
 	NEUTRAL: {
 		img: 'neutral.gif',
