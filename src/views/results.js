@@ -118,8 +118,6 @@ function createResultsHeader(detailedDamageInfo) {
 		rangedHeader = createResultsHeaderItem(rangedHeaderData);
 	}
 
-	const counterHeader = createResultsHeaderItem(counterHeaderData);
-
 	if (counterMaxDamageText > 0 || counterMinDamageText > 0) {
 		counterHeader = createResultsHeaderItem(counterHeaderData);
 	}
