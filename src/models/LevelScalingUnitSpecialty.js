@@ -1,4 +1,4 @@
-import UnitSpecialty from './UnitSpecialty';
+import UnitSpecialty from './UnitSpecialty.js';
 
 export default class LevelScalingUnitSpecialty extends UnitSpecialty {
 	constructor(

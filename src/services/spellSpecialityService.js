@@ -1,4 +1,4 @@
-import SPECIALITYS from '../data/heroSpellSpeciality';
+import SPECIALITYS from '../data/heroSpellSpeciality.js';
 
 class SpellSpecialityService {
 	constructor() {

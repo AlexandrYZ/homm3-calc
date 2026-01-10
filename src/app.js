@@ -5,12 +5,12 @@ import 'simplebar';
 
 import './styles/index.scss';
 
-import UnitsView from './views/units';
-import TownsView from './views/towns';
-import DamageCalculatorView from './views/damageCalculator';
+import UnitsView from './views/units.js';
+import TownsView from './views/towns.js';
+import DamageCalculatorView from './views/damageCalculator.js';
 
-import unitService from './services/unitService';
-import analyticsService from './services/analyticsService';
+import unitService from './services/unitService.js';
+import analyticsService from './services/analyticsService.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const unitsView = new UnitsView();

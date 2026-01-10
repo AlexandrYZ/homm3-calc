@@ -1,4 +1,4 @@
-import SkillSpecialty from '../models/Specialty';
+import SkillSpecialty from '../models/Specialty.js';
 
 export default {
 	OFFENSE: new SkillSpecialty(

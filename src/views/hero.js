@@ -1,10 +1,10 @@
 /* eslint-disable no-shadow */
 import tippy from 'tippy.js';
 
-import specialtyService from '../services/specialityService';
+import specialtyService from '../services/specialityService.js';
 
-import SpecialityDrawerView from './specialtys';
-import SpecialtyModal from './specialtyModal';
+import SpecialityDrawerView from './specialtys.js';
+import SpecialtyModal from './specialtyModal.js';
 
 export default class HeroView {
 	constructor(viewData) {

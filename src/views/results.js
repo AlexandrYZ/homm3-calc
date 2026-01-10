@@ -11,8 +11,12 @@ export default class Results {
 			maxTotalRangedDamage,
 			averageDamage,
 			averageRangedDamage,
+			counterMinDamageText,
+			counterMaxDamageText,
+			counterAverageDamage,
 			kills,
 			rangedKills,
+			counterKills,
 			attackSkillBonusText,
 			defenseSkillBonusText,
 			offenseBonusText,
@@ -33,8 +37,12 @@ export default class Results {
 			maxTotalRangedDamage,
 			averageDamage,
 			averageRangedDamage,
+			counterMinDamageText,
+			counterMaxDamageText,
+			counterAverageDamage,
 			kills,
 			rangedKills,
+			counterKills,
 		};
 
 		this.containerEl.innerHTML = `
@@ -68,8 +76,12 @@ function createResultsHeader(detailedDamageInfo) {
 		maxDamageText,
 		averageDamage,
 		averageRangedDamage,
+		counterMinDamageText,
+		counterMaxDamageText,
+		counterAverageDamage,
 		kills,
 		rangedKills,
+		counterKills,
 		minTotalRangedDamage,
 		maxTotalRangedDamage,
 	} = detailedDamageInfo;
@@ -90,14 +102,27 @@ function createResultsHeader(detailedDamageInfo) {
 		kills: rangedKills,
 	};
 
+	const counterHeaderData = {
+		title: 'Counter-attack',
+		minDamage: counterMinDamageText,
+		maxDamage: counterMaxDamageText,
+		averageDamage: counterAverageDamage,
+		kills: counterKills,
+	};
+
 	const meleeHeader = createResultsHeaderItem(meleeHeaderData);
 	let rangedHeader = '';
+	let counterHeader = '';
 
 	if (maxTotalRangedDamage > 0) {
 		rangedHeader = createResultsHeaderItem(rangedHeaderData);
 	}
 
-	const headerHtml = rangedHeader + meleeHeader;
+	if (counterMaxDamageText > 0 || counterMinDamageText > 0) {
+		counterHeader = createResultsHeaderItem(counterHeaderData);
+	}
+
+	const headerHtml = rangedHeader + meleeHeader + counterHeader;
 
 	return `
     <div id="results-header">
@@ -140,6 +165,9 @@ function formatDamageOutput(detailedDamageInfo) {
 		minTotalRangedDamage,
 		maxTotalRangedDamage,
 		rangedKills,
+		counterMinTotalDamage,
+		counterMaxTotalDamage,
+		counterKills,
 		attackSkillBonus,
 		offenseBonus,
 		offenseSpecialityBonus,
@@ -160,6 +188,12 @@ function formatDamageOutput(detailedDamageInfo) {
 		(detailedDamageInfo.minTotalRangedDamage +
 			detailedDamageInfo.maxTotalRangedDamage) /
 			2
+	);
+
+	const counterMinDamageText = Math.floor(counterMinTotalDamage);
+	const counterMaxDamageText = Math.floor(counterMaxTotalDamage);
+	const counterAverageDamage = Math.floor(
+		(counterMinTotalDamage + counterMaxTotalDamage) / 2
 	);
 
 	const attackSkillBonusText = `${(attackSkillBonus * 100).toFixed(1)}`;
@@ -191,8 +225,12 @@ function formatDamageOutput(detailedDamageInfo) {
 		maxTotalRangedDamage,
 		averageDamage,
 		averageRangedDamage,
+		counterMinDamageText,
+		counterMaxDamageText,
+		counterAverageDamage,
 		kills,
 		rangedKills,
+		counterKills,
 		attackSkillBonusText,
 		defenseSkillBonusText,
 		offenseBonusText,

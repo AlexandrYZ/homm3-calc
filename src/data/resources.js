@@ -1,4 +1,4 @@
-import Resource from '../models/Resource';
+import Resource from '../models/Resource.js';
 
 export default {
 	GOLD: new Resource('Gold', 'gold', 'gold.gif'),

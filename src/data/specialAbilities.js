@@ -1,4 +1,4 @@
-import ActiveSpecialAbility from '../models/ActiveSpecialAbility';
+import ActiveSpecialAbility from '../models/ActiveSpecialAbility.js';
 
 export default {
 	ACCURATE_SHOT: new ActiveSpecialAbility(

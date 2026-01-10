@@ -1,4 +1,4 @@
-import unitService from '../services/unitService';
+import unitService from '../services/unitService.js';
 
 export default class TownsView {
 	constructor() {

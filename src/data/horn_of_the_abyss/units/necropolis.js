@@ -89,6 +89,7 @@ export default {
 		growth: 4,
 		aiValue: 555,
 		cost: 360,
+		specials: ['no_enemy_retaliation'],
 	},
 	VAMPIRE_LORD: {
 		name: 'Vampire Lord',
@@ -102,6 +103,7 @@ export default {
 		growth: 4,
 		aiValue: 783,
 		cost: 500,
+		specials: ['no_enemy_retaliation'],
 	},
 	LICH: {
 		name: 'Lich',

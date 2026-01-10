@@ -1,7 +1,7 @@
-import SOD_TOWNS from '../data/shadow_of_death/towns';
-import HOTA_TOWNS from '../data/horn_of_the_abyss/towns';
+import SOD_TOWNS from '../data/shadow_of_death/towns.js';
+import HOTA_TOWNS from '../data/horn_of_the_abyss/towns.js';
 
-import Unit from '../models/Unit';
+import Unit from '../models/Unit.js';
 
 class UnitService {
 	constructor() {

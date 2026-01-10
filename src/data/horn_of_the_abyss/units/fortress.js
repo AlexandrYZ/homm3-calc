@@ -169,6 +169,7 @@ export default {
 		growth: 1,
 		aiValue: 4120,
 		cost: 2200,
+		specials: ['no_enemy_retaliation'],
 	},
 	CHAOS_HYDRA: {
 		name: 'Chaos Hydra',
@@ -182,5 +183,6 @@ export default {
 		growth: 1,
 		aiValue: 5931,
 		cost: 3500,
+		specials: ['no_enemy_retaliation'],
 	},
 };
